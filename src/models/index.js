@@ -1,22 +1,27 @@
-import { init } from "@rematch/core";
-
-const count = {
-  state: 0, // initial state
-  reducers: {
-    // handle state changes with pure functions
-    increment(state, payload) {
-      return state + payload;
+import { createState } from 'shuttle-state';
+const useValue = createState({
+  navigatorList: [
+    {
+      icon: 'home',
+      text: 'HOME',
+      link: '/'
     },
-  },
-  effects: (dispatch) => ({
-    // handle state changes with impure functions.
-    // use async/await for async actions
-    async incrementAsync(payload, rootState) {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      dispatch.count.increment(payload);
+    {
+      icon: 'calendar',
+      text: 'BLOG',
+      link: '/blog'
     },
-  }),
-};
+    {
+      icon: 'profile',
+      text: 'TIMELINE',
+      link: '/archive'
+    },
+    {
+      icon: 'user',
+      text: 'ABOUT',
+      link: '/me'
+    },
+  ],
+});
 
-const store = init({ count });
-export default store;
+export { useValue };
